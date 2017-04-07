@@ -51,12 +51,14 @@ const initialState = {
     input: {
       amount: EMPTY_AMOUNT,
       selectedCurrencyCode: currencyListA[0],
-      currencyList: currencyListA
+      currencyList: currencyListA,
+      isSourceOfChanges: false
     },
     output: {
       amount: EMPTY_AMOUNT,
       selectedCurrencyCode: currencyListB[0],
-      currencyList: currencyListB
+      currencyList: currencyListB,
+      isSourceOfChanges: false
     }
   },
   bankAccounts: {

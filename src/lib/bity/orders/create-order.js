@@ -43,28 +43,41 @@ export function exchangeFiatToCryptoFactory(ajax) {
 }
 
 export function exchangeCryptoToFiatFactory(ajax) {
-  return (data) => {
+  return (data, requireOutputAmount) => {
     const {
       category,
-      inputAmount: amount,
+      inputAmount,
+      outputAmount,
       outputCurrencyCode: currency,
       paymentMethodCode: payment_method,
       bankAccountUuid: bank_account_uuid,
       externalReference: external_reference
     } = data;
 
+    const requestData = {
+      currency,
+      category,
+      payment_method,
+      bank_account_uuid,
+      external_reference
+    };
+
+    if (requireOutputAmount !== true) {
+      // the amount of BTC which user agree to spend
+      requestData.amount = inputAmount;
+      // the value of parameter "amount" contains "Expected amount of money for spending"
+      requestData.amount_mode = 1;
+    } else {
+      // the amount in fiat currency which user expects to receive
+      requestData.amount = outputAmount;
+      // the value of parameter "amount" contains "Expected amount of money to receive"
+      requestData.amount_mode = 0;
+    }
+
     const ajaxCfg = {
       method: 'POST',
       url: URL,
-      data: {
-        category,
-        amount,
-        amount_mode: 1, // magic value
-        currency,
-        payment_method,
-        bank_account_uuid,
-        external_reference
-      }
+      data: requestData
     };
 
     return ajax(ajaxCfg)

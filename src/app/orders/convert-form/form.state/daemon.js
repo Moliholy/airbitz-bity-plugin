@@ -80,9 +80,14 @@ function* listenSubmitIntents() {
     const rawInputAmount = yield select(exchangePartiesSelectors.getInputAmount);
     const inputAmount = parseFloat(rawInputAmount);
     const inputCurrencyCode = yield select(exchangePartiesSelectors.getInputSelectedCurrencyCode);
+    const rawOutputAmount = yield select(exchangePartiesSelectors.getOutputAmount);
+    const outputAmount = parseFloat(rawOutputAmount);
     const outputCurrencyCode = yield select(exchangePartiesSelectors.getOutputSelectedCurrencyCode);
     const paymentMethodCode = yield select(paymentMethodsSelectors.getSelectedPaymentMethodId);
     const externalReference = yield select(externalReferenceSelectors.getExternalReference);
+
+    const inputIsSourceOfChanges = yield select(exchangePartiesSelectors.inputIsSourceOfChanges);
+    const outputIsSourceOfChanges = yield select(exchangePartiesSelectors.outputIsSourceOfChanges);
 
     const allBankAccounts = yield select(bankAccountsSelectors.getAllBankAccounts);
     const bankAccountId = yield select(bankAccountsSelectors.getSelectedAccountId);
@@ -91,10 +96,13 @@ function* listenSubmitIntents() {
     const formData = {
       inputAmount,
       inputCurrencyCode,
+      outputAmount,
       outputCurrencyCode,
       bankAccountUuid,
       paymentMethodCode,
-      externalReference
+      externalReference,
+      inputIsSourceOfChanges,
+      outputIsSourceOfChanges
     };
     yield put(exchangeOrderActions.createOrder(formData));
 

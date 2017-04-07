@@ -247,7 +247,12 @@ function* sendFiatToCryptoRequestStep(bity, formData, airbitzPublicAddress) {
 }
 
 function* sendCryptoToFiatRequestStep(bity, formData) {
-  const { inputCurrencyCode, outputCurrencyCode } = formData;
+  const {
+    inputCurrencyCode,
+    outputCurrencyCode,
+    outputIsSourceOfChanges: requireOutputAmount = false
+  } = formData;
+
   const category = utils.getCryptoToFiatRequestCategoryParameter(inputCurrencyCode, outputCurrencyCode);
 
   const dataForRequest = {
@@ -256,7 +261,7 @@ function* sendCryptoToFiatRequestStep(bity, formData) {
   };
 
   const res = yield race({
-    request: call(sendCryptoToFiatRequest, bity, dataForRequest),
+    request: call(sendCryptoToFiatRequest, bity, dataForRequest, requireOutputAmount),
     unauth: take(authStoreActions.UNAUTHENTICATED)
   });
 
@@ -359,9 +364,9 @@ function* sendFiatToCryptoRequest(bity, formData) {
   }
 }
 
-function* sendCryptoToFiatRequest(bity, formData) {
+function* sendCryptoToFiatRequest(bity, formData, requireOutputAmount) {
   try {
-    const data = yield call(bity.orders.exchangeCryptoToFiat, formData);
+    const data = yield call(bity.orders.exchangeCryptoToFiat, formData, requireOutputAmount);
     return { error: null, data };
   } catch (e) {
     return { error: e };

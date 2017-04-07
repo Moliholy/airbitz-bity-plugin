@@ -30,6 +30,10 @@ export function getInputCurrencyList(state) {
   return state[mountPoint].exchangeParties.input.currencyList;
 }
 
+export function inputIsSourceOfChanges(state) {
+  return state[mountPoint].exchangeParties.input.isSourceOfChanges === true;
+}
+
 // --------------------------
 // output
 // --------------------------
@@ -43,4 +47,8 @@ export function getOutputSelectedCurrencyCode(state) {
 
 export function getOutputCurrencyList(state) {
   return state[mountPoint].exchangeParties.output.currencyList;
+}
+
+export function outputIsSourceOfChanges(state) {
+  return state[mountPoint].exchangeParties.output.isSourceOfChanges === true;
 }
