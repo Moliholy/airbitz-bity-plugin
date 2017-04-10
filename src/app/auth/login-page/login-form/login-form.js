@@ -78,7 +78,8 @@ export default class LoginForm extends Component {
       >
         <div className="form-group">
           <Field model=".user">
-            <input id="user" type="text" className="form-control" placeholder="Username, email or phone" />
+            <input id="user" type="text" className="form-control" placeholder="Username, email or phone"
+              autoCorrect="off" autoCapitalize="none" />
           </Field>
         </div>
         <div className="form-group">
