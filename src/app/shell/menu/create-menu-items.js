@@ -15,6 +15,9 @@ function createGuestMenuItems(onMenuItemClick) {
     </MenuItem>,
     <MenuItem onClick={onMenuItemClick} key="2">
       <Link to="/signup" title="Register" replace className="menu-item--sign-up" />
+    </MenuItem>,
+    <MenuItem onClick={onMenuItemClick} key="2">
+      <Link to="/about-us" title="About Us" replace className="menu-item--about-us" />
     </MenuItem>
   ];
 }
@@ -32,6 +35,9 @@ function createKnownUserMenuItems(onMenuItemClick) {
     </MenuItem>,
     <MenuItem onClick={onMenuItemClick} key="4">
       <LogoutButton className="menu-item--sign-out" />
+    </MenuItem>,
+    <MenuItem onClick={onMenuItemClick} key="2">
+      <Link to="/about-us" title="About Us" replace className="menu-item--about-us" />
     </MenuItem>
   ];
 }

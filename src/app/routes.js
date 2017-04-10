@@ -13,6 +13,7 @@ import RegisterPhonePage from './phone/register-phone-page/page';
 import VerifyPhonePage from './phone/verify-phone-page/page';
 import OrderDetailsPage from './orders/order-details-page';
 import CreateBankAccountPage from './bank-accounts/create-page/page';
+import AboutUsPage from './about-us-page';
 
 export default {
   path: '/',
@@ -64,6 +65,10 @@ export default {
     {
       path: 'bank-accounts/create',
       component: protectedRoute(CreateBankAccountPage)
+    },
+    {
+      path: 'about-us',
+      component: AboutUsPage
     }
   ]
 };
