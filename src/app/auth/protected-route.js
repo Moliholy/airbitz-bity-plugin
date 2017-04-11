@@ -5,7 +5,7 @@ import { selectors as authStoreSelectors } from '../common-data/auth';
 
 const WRAPPER_DISPLAY_NAME = 'ProtectedRoute';
 
-const REDIRECT_URL = '/login';
+const REDIRECT_URL = '/signup';
 
 const propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
