@@ -30,7 +30,7 @@ export function parseBankAccountData(obj) {
   const userId = extractUserId(personUrl);
 
   return {
-    id,
+    id: id.toString(),
     uuid,
 
     abaNumber,
