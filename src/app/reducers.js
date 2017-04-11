@@ -21,6 +21,8 @@ import { setup as setupRegisterPhonePageState } from './phone/register-phone-pag
 import { setup as setupVerifyPhonePageState } from './phone/verify-phone-page/state';
 import { setup as setupAddBankAccountPageState } from './bank-accounts/create-page/state';
 import { setup as setupAppPreloader } from './app-preloader/state';
+import { setup as setupActivateUserPage } from './user-activation/activate-page/state';
+import { setup as setupFailedActivationPage } from './user-activation/failed-activation-page/state';
 
 const bity = createBity();
 
@@ -50,6 +52,8 @@ cfg = setupRegisterPhonePageState(cfg, bity);
 cfg = setupVerifyPhonePageState(cfg, bity);
 cfg = setupAddBankAccountPageState(cfg, bity);
 cfg = setupAppPreloader(cfg, bity);
+cfg = setupActivateUserPage(cfg, bity);
+cfg = setupFailedActivationPage(cfg, bity);
 
 const { reducers, sagas } = cfg;
 const reducer = combineReducers(reducers);
