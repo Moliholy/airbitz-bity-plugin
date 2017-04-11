@@ -321,6 +321,7 @@ function* getPublicAddressOfAirbitzWallet(wallet, extraOpts = {}) {
   const defaultOpts = {
     label: 'Bity.com',
     category: 'Exchange:Buy Bitcoin',
+    bizId: 10865,
     notes: utils.createNotesForAirbitz()
   };
 
