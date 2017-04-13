@@ -1,4 +1,4 @@
-import createBityInstance from '../bity';
+import createBityInstance from '../lib/bity';
 import { airbitzStorageFactory } from '../airbitz';
 
 const HOST = process.env.HOST;

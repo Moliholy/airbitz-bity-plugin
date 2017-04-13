@@ -1,7 +1,7 @@
 import { take, spawn, call } from 'redux-saga/effects';
 import { actions as authStoreActions } from '../common-data/auth';
 import * as actions from './actions';
-import { parse } from '../../bity/errors';
+import { parse } from '../../lib/bity/errors';
 import convertBityErrorToNotificationCfg from './convert-bity-error-to-notification-cfg';
 
 const listenMessages = [

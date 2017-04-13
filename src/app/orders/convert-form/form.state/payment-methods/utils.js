@@ -1,4 +1,4 @@
-import * as paymentMethodsUtils from '../../../../../bity/payment-methods/utils';
+import * as paymentMethodsUtils from '../../../../../lib/bity/payment-methods/utils';
 import { utils as currenciesUtils } from '../../../../common-data/currencies';
 import { EMPTY_PAYMENT_METHOD_ID } from '../constants';
 
