@@ -11,6 +11,8 @@ import quotaApiFactory from './quota';
 import phoneApiFactory from './phone';
 import signupApiFactory from './signup';
 
+import loggerPluginFactory from './ajax/plugins/logger';
+
 export default function createBityInstance(opts = {}) {
   const {
     clientId,
@@ -35,13 +37,16 @@ export default function createBityInstance(opts = {}) {
   // ajax used for auth requests
   // 1) ajax requests for auth uses different URL prefix
   // 2) we do not need to sign the ajax requests for auth
-  const ajaxForAuth = prefixPluginFactory(host)(baseAjax);
+  let ajaxForAuth = prefixPluginFactory(host)(baseAjax);
 
   // ajax used for REST API requests
   const REST_API_PREFIX = '/api/v1'; // TODO REST API prefix should be declared in the external config
 
   let ajaxForApi = authAjaxPlugin(baseAjax);
   ajaxForApi = prefixPluginFactory(`${host}/${REST_API_PREFIX}`)(ajaxForApi);
+  
+  ajaxForAuth = loggerPluginFactory()(ajaxForAuth);
+  ajaxForApi = loggerPluginFactory()(ajaxForApi);
 
   const accountApi = accountApiFactory(ajaxForApi);
   const ordersApi = ordersApiFactory(ajaxForApi);

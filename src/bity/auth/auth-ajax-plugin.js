@@ -25,10 +25,12 @@ export default function authAjaxPluginFactory(opts) {
             case 400:
               if (responseErrorField === 'invalid_request' || responseErrorField === 'invalid_grant') {
                 onUnauthResponse();
+                console.log(`authAjaxPlugin::on unauth response:\n\t${JSON.stringify(resp)}`);
               }
               break;
             case 401:
               onUnauthResponse();
+              console.log(`authAjaxPlugin::on unauth response:\n\t${JSON.stringify(resp)}`);
               break;
           }
 

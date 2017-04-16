@@ -21,7 +21,13 @@ export default function exchangeOrderDaemonFactory(bity) {
     yield [
       // yield spawn(listenUnauth),
       // yield spawn(listenFetchIntents, bity)
-      yield spawn(listenCreateOrderIntents, bity)
+      yield spawn(listenCreateOrderIntents, bity),
+      yield spawn(function* logEverything() {
+        while (true) {
+          const msg = yield take();
+          console.log(`redux:\n\t${JSON.stringify(msg)}`);
+        }
+      })
     ];
   };
 }
@@ -155,6 +161,7 @@ function* performExchangeCryptoToFiat(bity, formData) {
   // -------------------
   const btcAmount = formData.inputAmount;
   const confirmationResult = yield call(askConfirmBtcSpendingStep, wallet, outputCryptoAddress, btcAmount);
+  console.log(`confirmationResult:\n\t${JSON.stringify(confirmationResult)}`);
   if (confirmationResult.canceled) {
     yield put(actions.canceled());
     return;
