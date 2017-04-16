@@ -2,7 +2,10 @@ node_modules/
 
 dist/
 build/
-src/3rd-party/
+src/lib/
+
+# XXX: Temporarily ignoring bity library until we move it out of this repo
+!src/lib/bity
 
 maintenance/
 

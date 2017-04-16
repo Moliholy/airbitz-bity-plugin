@@ -22,7 +22,7 @@ export default function exchangePartiesReducer(state, action) {
 
 function onInputAmountChanged(state, action) {
   const { payload: amount } = action;
-  const nextState = {
+  let nextState = {
     ...state,
     exchangeParties: {
       ...state.exchangeParties,
@@ -38,12 +38,27 @@ function onInputAmountChanged(state, action) {
     return nextState;
   }
 
+  nextState = {
+    ...nextState,
+    exchangeParties: {
+      ...nextState.exchangeParties,
+      input: {
+        ...nextState.exchangeParties.input,
+        isSourceOfChanges: true
+      },
+      output: {
+        ...nextState.exchangeParties.output,
+        isSourceOfChanges: false
+      }
+    }
+  };
+
   return recalculateAndUpdateOutputAmount(nextState);
 }
 
 function onOutputAmountChanged(state, action) {
   const { payload: amount } = action;
-  const nextState = {
+  let nextState = {
     ...state,
     exchangeParties: {
       ...state.exchangeParties,
@@ -58,6 +73,21 @@ function onOutputAmountChanged(state, action) {
   if (isInternal) {
     return nextState;
   }
+
+  nextState = {
+    ...nextState,
+    exchangeParties: {
+      ...nextState.exchangeParties,
+      input: {
+        ...nextState.exchangeParties.input,
+        isSourceOfChanges: false
+      },
+      output: {
+        ...nextState.exchangeParties.output,
+        isSourceOfChanges: true
+      }
+    }
+  };
 
   return updateInputAmountWhenOutputChanged(nextState);
 }
