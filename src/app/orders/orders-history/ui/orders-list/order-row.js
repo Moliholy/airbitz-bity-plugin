@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { withRouter } from 'react-router';
 import numeral from 'numeral';
-import * as bityConstants from '../../../../../bity/orders/constants';
+import * as bityConstants from '../../../../../lib/bity/orders/constants';
 import styles from './styles.less';
 import * as utils from './utils';
 

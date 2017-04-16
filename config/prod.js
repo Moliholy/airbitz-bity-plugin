@@ -2,5 +2,5 @@ const defaultCfg = require('./default');
 
 module.exports = Object.assign({}, defaultCfg, {
   HOST: 'https://bity.com/',
-  CLIENT_ID: 'QmaTkYI50XmCF18fupZgdAOptYqDzVix12RpqFYS'
+  CLIENT_ID: 'VQaTtAAAyWZHKPT4JCpEIThWQvMu7s1bBvL3HpGm'
 });

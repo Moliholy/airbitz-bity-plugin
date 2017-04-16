@@ -1,4 +1,4 @@
-import { errors } from '../../bity/errors';
+import { errors } from '../../lib/bity/errors';
 
 export default function convertBityErrorToNotificationCfg({ code }) {
   switch (code) {
