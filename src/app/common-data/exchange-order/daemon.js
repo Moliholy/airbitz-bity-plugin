@@ -155,7 +155,17 @@ function* performExchangeCryptoToFiat(bity, formData) {
   }
   const { data: orderDetails } = requestResult;
   const { outputCryptoAddress, orderId } = orderDetails;
-
+  
+  // -------------------
+  // store test value with random key
+  // -------------------
+  const testKey = `test-key-${Date.now()}`;
+  const testValue = '123';
+  window.Airbitz.core.writeData(testKey, testValue);
+  
+  let obtainedTestValue = window.Airbitz.core.readData(testKey);
+  console.log(`[TEST VALUE BEFORE CONFIRMATION UI] ${obtainedTestValue}`);
+  
   // -------------------
   // log stored tokens in Airbitz storage
   // -------------------
@@ -192,6 +202,9 @@ function* performExchangeCryptoToFiat(bity, formData) {
   
   window.clearInterval(intervalId);
   logTokens('[AFTER CONFIRMATION UI]');
+  
+  obtainedTestValue = window.Airbitz.core.readData(testKey);
+  console.log(`[TEST VALUE AFTER CONFIRMATION UI] ${obtainedTestValue}`);
   
   // -------------------
   // force refresh of quota data
