@@ -24,13 +24,13 @@ export default function authAjaxPluginFactory(opts) {
           switch (status) {
             case 400:
               if (responseErrorField === 'invalid_request' || responseErrorField === 'invalid_grant') {
+                console.log(`[authAjaxPlugin.on unauth response] ${JSON.stringify(resp)}`);
                 onUnauthResponse();
-                console.log(`authAjaxPlugin::on unauth response:\n\t${JSON.stringify(resp)}`);
               }
               break;
             case 401:
+              console.log(`[authAjaxPlugin.on unauth response] ${JSON.stringify(resp)}`);
               onUnauthResponse();
-              console.log(`authAjaxPlugin::on unauth response:\n\t${JSON.stringify(resp)}`);
               break;
           }
 

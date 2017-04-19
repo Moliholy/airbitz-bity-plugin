@@ -173,7 +173,7 @@ function* performExchangeCryptoToFiat(bity, formData) {
   // -------------------
   const btcAmount = formData.inputAmount;
   const confirmationResult = yield call(askConfirmBtcSpendingStep, wallet, outputCryptoAddress, btcAmount);
-  console.log(`confirmationResult:\n\t${JSON.stringify(confirmationResult)}`);
+  console.log(`[confirmationResult] ${JSON.stringify(confirmationResult)}`);
   if (confirmationResult.canceled) {
     yield put(actions.canceled());
     return;

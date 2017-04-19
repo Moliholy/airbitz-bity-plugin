@@ -46,6 +46,7 @@ export default function authFactory(opts = {}) {
   }
 
   function onUnauthResponse() {
+    console.log('[authFactory] onUnauthResponse');
     clearStoredData();
     updateAuthStatus(false);
   }
@@ -100,10 +101,12 @@ export default function authFactory(opts = {}) {
   }
 
   function storeData(data) {
+    console.log('[authFactory] storeData', JSON.stringify(data));
     storage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
 
   function clearStoredData() {
+    console.log('[authFactory] clearStoredData');
     storage.removeItem(STORAGE_KEY);
   }
 
