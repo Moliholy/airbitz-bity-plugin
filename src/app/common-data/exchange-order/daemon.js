@@ -25,7 +25,7 @@ export default function exchangeOrderDaemonFactory(bity) {
       yield spawn(function* logEverything() {
         while (true) {
           const msg = yield take();
-          console.log(`redux:\n\t${JSON.stringify(msg)}`);
+          // console.log(`redux:\n\t${JSON.stringify(msg)}`);
         }
       })
     ];
@@ -157,6 +157,18 @@ function* performExchangeCryptoToFiat(bity, formData) {
   const { outputCryptoAddress, orderId } = orderDetails;
 
   // -------------------
+  // log stored tokens in Airbitz storage
+  // -------------------
+  const logTokens = (prefix = '') => {
+    console.log(`${prefix}[STORED TOKENS]`, window.Airbitz.core.readData('bity.auth'));
+  };
+  logTokens('[BEFORE CONFIRMATION UI]');
+  
+  const intervalId = window.setInterval(() => {
+    logTokens('[DURING CONFIRMATION UI]');
+  }, 300);
+  
+  // -------------------
   // ask the Airbitz user to confirm the transaction
   // -------------------
   const btcAmount = formData.inputAmount;
@@ -177,7 +189,10 @@ function* performExchangeCryptoToFiat(bity, formData) {
     yield put(actions.canceled());
     return;
   }
-
+  
+  window.clearInterval(intervalId);
+  logTokens('[AFTER CONFIRMATION UI]');
+  
   // -------------------
   // force refresh of quota data
   // -------------------
