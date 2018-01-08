@@ -205,6 +205,9 @@ function* processRequestError(router) {
     case 'payment_amount_exceeds_quota':
       msg = 'Amount exceeds quota';
       break;
+    case 'must_complete_kyc_first':
+      msg = 'In order to buy, please login bity.com and verify you account';
+      break;
   }
 
   yield call(showErrorNotification, msg);
