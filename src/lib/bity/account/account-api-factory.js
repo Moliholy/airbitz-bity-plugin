@@ -15,7 +15,7 @@ export default function accountApiFactory(ajax) {
 
     return ajax(cfg)
       .then(({ data }) => ({
-        userId: data.first_person_id,
+        userId: data.person_id,
         userName: data.username,
         email: data.email,
         isActive: data.is_active
